@@ -2,18 +2,19 @@
 #include <climits>
 using namespace std;
 
+
 void maxSubArraySum(int *arr,int n){
     int maxSum = INT_MIN;
+    int currSum = 0;
     for (int start = 0; start < n; start++)
     {
-        int currSum=0;
-        for (int end = start; end < n; end++)
+        currSum+=arr[start];
+        maxSum = max(currSum,maxSum);
+        if (currSum<0)
         {
-            currSum+=arr[end];
-            
-            maxSum = max(maxSum,currSum);
-           
+            currSum = 0;
         }
+        
     }
     cout<<"Maximum Sum is "<<maxSum<<endl;
 }
