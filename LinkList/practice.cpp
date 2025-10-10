@@ -1,4 +1,6 @@
 #include <iostream>
+#include<climits>
+
 using namespace std;
 
 class Node{
@@ -37,6 +39,7 @@ void print(){
         cout<<temp->getData()<<" ";
         temp = temp->getNext();
     }
+    cout<<endl;
 }
 
 void insert(int val){
@@ -68,17 +71,93 @@ void deleteValue(int val){
         {
             tail = NULL;   
         }
-        return;
+        return; 
+    }
+    Node *current = head->getNext();
+    Node *prev = head;
+    while (current->getData() != val)
+    {
+        current = current->getNext();
+        prev = prev->getNext();
+    }
+    prev->setNext(current->getNext());
+    current->setNext(NULL);
+
+    if (current->getNext() == NULL)
+    {
+        tail = prev;
+    }
+    delete current;
+}
+
+void max(){
+    Node *temp = head;
+    int max = INT_MIN;
+    while (temp !=NULL)
+    {
+        if (temp->getData() > max)
+        {
+            max = temp->getData();
+            
+        }
+        temp =temp->getNext();
         
     }
+    cout<<"Maxing value is "<<max<<endl;
+}
+
+void min(){
+    Node *temp = head;
+    int min = INT_MAX;
+    while (temp !=NULL)
+    {
+        if (temp->getData() < min)
+        {
+            min = temp->getData();
+            
+        }
+        temp =temp->getNext();
+        
+    }
+    cout<<"Minimum value is "<<min<<endl;
+}
+
+void sort(){
+    
+    Node *temp = head;
+    while (temp->getNext()!= NULL)
+    {
+        Node *current = head->getNext();
+        Node *prev = head;
+        while (current!= NULL)
+        {
+            if (prev->getData() > current->getData())
+            {
+                int t = prev->getData();
+                prev->setData(current->getData());
+                current->setData(t);
+                // cout<<"Swapping "<<prev->getData()<<" and "<<current->getData()<<endl;
+            }
+            current = current->getNext();
+            prev = prev->getNext();
+            
+        }
+        temp = temp->getNext();
+    }
+    
 }
 };
 int main() {
     List ll;
 
-    ll.insert(5);
     ll.insert(4);
+    ll.insert(5);
     ll.insert(3);
     ll.print();
+    // ll.deleteValue(5);
+    // ll.min();
+    ll.sort();
+    ll.print();
+    // ll.max();
     return 0;
 }
