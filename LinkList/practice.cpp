@@ -144,6 +144,43 @@ void sort(){
         }
         temp = temp->getNext();
     }
+
+}
+ 
+void addBetween(int val,int indx){
+    Node * newNode = new Node();
+    newNode->setData(val);
+    newNode->setNext(NULL);
+    int i = 0;
+    Node *temp = head;
+    while (i<indx)
+    {
+        temp = temp->getNext();
+        i++;
+    }
+    newNode->setNext(temp->getNext());
+    temp->setNext(newNode);
+    
+}
+
+void deleteAtPos(int pos){
+    if (pos == 1)
+    {
+        Node*temp = head;
+        head = temp->getNext();
+        delete temp;
+    }else{
+        Node *current = head;
+        Node *prev = NULL;
+        int cnt = 1;
+        while (cnt<=pos)
+        {
+            prev = current;
+            current = current->getNext();
+        }
+        
+        
+    }
     
 }
 };
@@ -154,10 +191,7 @@ int main() {
     ll.insert(5);
     ll.insert(3);
     ll.print();
-    // ll.deleteValue(5);
-    // ll.min();
-    ll.sort();
+    ll.addBetween(6,0);
     ll.print();
-    // ll.max();
     return 0;
 }
