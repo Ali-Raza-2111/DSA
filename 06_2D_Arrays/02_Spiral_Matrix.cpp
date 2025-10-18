@@ -13,23 +13,23 @@ void spiralMatrix(int martix[][4],int n,int m){
         cout<<martix[i][ecol]<<" ";
     }
     cout<<endl;
-    for (int i = ecol-1; i >=scol; i--)
-    {
-        if (srow == erow)
+    if(srow<erow){
+        for (int i = ecol-1; i >=scol; i--)
         {
-            break;
+            
+            
+            cout<<martix[erow][i]<<" ";
         }
-        
-        cout<<martix[erow][i]<<" ";
+        cout<<endl;
     }
-    cout<<endl;
-    for(int i = erow-1;i>=srow+1;i--){
-        if (scol == ecol){
-            break;
+    if (scol<ecol)
+    {
+        for(int i = erow-1;i>=srow+1;i--){
+            cout<<martix[i][scol]<<" ";
         }
-        cout<<martix[i][scol]<<" ";
+        cout<<endl;
     }
-    cout<<endl;
+    
 
         srow++;
         scol++;
