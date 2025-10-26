@@ -70,12 +70,14 @@ class stack{
 };
 int main(){
     stack st;
-    st.Push(4);
-    st.Push(5);
-    st.Push(6);
+    st.Push(100);
+    st.Push(200);
+    st.Push(300);
+    st.Push(400);
+    st.Push(500);
     st.DisplayStack();
     st.Pop();
-    cout<<endl;
-    cout<<endl;
+    
+    cout<<"Poping "<<endl;
     st.DisplayStack();
 }
