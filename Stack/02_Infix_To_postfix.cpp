@@ -1,8 +1,8 @@
 #include <iostream>
-#include <cctype>   // for isalnum()
+#include <cctype>  
 using namespace std;
 
-const int STACKSIZE = 100;  // increased size for expressions
+const int STACKSIZE = 100; 
 
 class Stack {
 private:
@@ -43,11 +43,11 @@ public:
         if (!isEmpty())
             return stackArray[TOP];
         else
-            return '\0';  // return null if empty
+            return '\0';  
     }
 };
 
-// Function to define precedence
+
 int precedence(char op) {
     if (op == '^')
         return 3;
@@ -59,19 +59,19 @@ int precedence(char op) {
         return 0;
 }
 
-// Function to check if character is operator
+
 bool isOperator(char c) {
     return (c == '+' || c == '-' || c == '*' || c == '/' || c == '^');
 }
 
-// Function to convert infix to postfix using your Stack
+
 string infixToPostfix(string infix) {
     Stack st;
     string postfix = "";
 
     for (char c : infix) {
         if (isalnum(c)) {
-            postfix += c;  // operand → directly to output
+            postfix += c; 
         } else if (c == '(') {
             st.Push(c);
         } else if (c == ')') {
@@ -79,7 +79,7 @@ string infixToPostfix(string infix) {
                 postfix += st.Top();
                 st.Pop();
             }
-            st.Pop(); // remove '('
+            st.Pop(); 
         } else if (isOperator(c)) {
             while (!st.isEmpty() && precedence(st.Top()) >= precedence(c)) {
                 postfix += st.Top();
@@ -89,7 +89,7 @@ string infixToPostfix(string infix) {
         }
     }
 
-    // Pop remaining operators
+    
     while (!st.isEmpty()) {
         postfix += st.Top();
         st.Pop();
