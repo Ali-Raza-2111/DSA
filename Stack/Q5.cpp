@@ -18,6 +18,7 @@ public:
         return (TOP == -1);
     }
 
+    
     bool isFull() {
         return (TOP == STACKSIZE - 1);
     }
