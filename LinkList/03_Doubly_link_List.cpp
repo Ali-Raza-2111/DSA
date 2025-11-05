@@ -71,6 +71,9 @@ class list{
         
     }
 
+    
+    
+    
     void printBack(){
         Node *temp = tail;
         while (temp!=NULL)
