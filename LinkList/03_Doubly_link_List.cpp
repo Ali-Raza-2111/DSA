@@ -36,6 +36,8 @@ class Node{
 
 };
 
+
+
 class list{
     public:
     Node *head;
