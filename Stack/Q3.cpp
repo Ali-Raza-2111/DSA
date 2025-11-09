@@ -75,7 +75,6 @@ int evaluatePostfix(string expression) {
                     return -1;
             }
 
-            
             s.Push(result + '0');
         }
     }
