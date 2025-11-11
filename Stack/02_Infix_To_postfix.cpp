@@ -88,8 +88,6 @@ string infixToPostfix(string infix) {
             st.Push(c);
         }
     }
-
-    
     while (!st.isEmpty()) {
         postfix += st.Top();
         st.Pop();
