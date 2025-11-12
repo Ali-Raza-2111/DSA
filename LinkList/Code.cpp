@@ -71,6 +71,7 @@ public:
         }
         return; 
     }
+    
     Node *current = head->getNext();
     Node *prev = head;
     while (current->getData() != val)
