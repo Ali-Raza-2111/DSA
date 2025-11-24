@@ -77,6 +77,20 @@ void levelOrder(Node *root){
     }
     
 }
+Node* insert(Node* root, int val) {
+    if (root == NULL) {
+        return new Node(val);
+    }
+    
+    if (val < root->data) {
+        root->left = insert(root->left, val);
+    } else if (val > root->data) {
+        root->right = insert(root->right, val);
+    }
+    
+    return root;
+}
+
 int main() {
     vector<int> preorder = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     Node *root = buildTree(preorder);
