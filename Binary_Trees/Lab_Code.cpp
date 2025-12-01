@@ -100,30 +100,100 @@ Node* insert(Node* root, int val) {
     return root;
 }
 
+Node* deleteNode(Node* root, int key) {
+    if (root == nullptr) return root;
+
+    
+    if (key < root->getData()) {
+        root->setLeft(deleteNode(root->getLeft(), key));
+    }
+    else if (key > root->getData()) {
+        root->setRight(deleteNode(root->getRight(), key));
+    }
+    else {
+        
+        if (root->getLeft() == nullptr && root->getRight() == nullptr) {
+            delete root;
+            return nullptr;
+        }
+
+        
+        if (root->getLeft() == nullptr) {
+            Node* temp = root->getRight();
+            delete root;
+            return temp;
+        }
+        else if (root->getRight() == nullptr) {
+            Node* temp = root->getLeft();
+            delete root;
+            return temp;
+        }
+
+        
+        Node* successor = root->getRight();
+        while (successor->getLeft() != nullptr) {
+            successor = successor->getLeft();
+        }
+
+        
+        root->setData(successor->getData());
+
+        
+        root->setRight(deleteNode(root->getRight(), successor->getData()));
+    }
+
+    return root;
+}
+
+
+Node* FindMinimum(Node* tree) {
+    if (tree == nullptr) return nullptr;
+
+    Node* current = tree;
+    while (current->getLeft() != nullptr) {
+        current = current->getLeft();
+    }
+    return current;
+}
+
+void levelordertraversal(Node* root) {
+    if (root == nullptr) return;
+
+    queue<Node*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        Node* current = q.front();
+        q.pop();
+
+        cout << current->getData() << " ";
+
+        if (current->getLeft() != nullptr)
+            q.push(current->getLeft());
+
+        if (current->getRight() != nullptr)
+            q.push(current->getRight());
+    }
+}
 int main() {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
     Node* root = buildTree(preorder);
 
-    cout << "Level order before insert: ";
+    // Find minimum
+    Node* minNode = FindMinimum(root);
+    if (minNode != nullptr)
+        cout << "Minimum value: " << minNode->getData() << endl;
+
+    // Delete a value
+    cout << "Deleting 3..." << endl;
+    root = deleteNode(root, 3);
+
+    // Show result after deletion
+    cout << "Level order after deletion: ";
     levelOrder(root);
     cout << endl;
 
-    root = insert(root, 6);  
-    cout << "Level order after insert: ";
-    levelOrder(root);
-    cout << endl;
-
-    cout << "Preorder traversal: ";
-    preOrder(root);
-    cout << endl;
-
-    cout << "Inorder traversal: ";
-    inOrderTraversal(root);
-    cout << endl;
-
-    cout << "Postorder traversal: ";
-    postOrderTraversal(root);
-    cout << endl;
+    return 0;
 
     return 0;
 }
