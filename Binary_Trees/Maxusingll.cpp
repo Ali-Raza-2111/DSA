@@ -18,6 +18,8 @@ class MaxHeap{
     MaxHeap(){
         root=NULL;
     }
+
+    
     void Insert(int val){
         Node* newnode=new Node(val);
         if(root==NULL){
