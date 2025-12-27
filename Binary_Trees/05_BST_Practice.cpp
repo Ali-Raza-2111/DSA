@@ -87,7 +87,6 @@ void PostOrderTraversal(Node *root){
 }
 
 
-
 Node *FindMinimum(Node *root){
     if (root == NULL)
     {
@@ -99,7 +98,47 @@ Node *FindMinimum(Node *root){
     }
 
     return FindMinimum(root->getLeft());
+}
+
+Node *delteNode(Node*root,int key){
+    if (root == NULL)
+    {
+        return NULL;
+    }
+
+    if (key<root->getData())
+    {
+        root->setLeft(delteNode(root->getLeft(),key));
+    }else if (key>root->getData())
+    {
+        root->setRight(delteNode(root->getRight(),key));
+    }else{
+        //Case 1 with No child
+        if (root->getLeft() == NULL && root->getRight() == NULL)
+        {
+            delete root;
+            return NULL;
+        }else if (root->getLeft() == NULL)
+        {
+            Node *temp = root->getRight();
+            delete root;
+            return temp; 
+        }else if (root->getRight()== NULL)
+        {
+            Node *temp = root->getLeft();
+            delete root;
+            return temp;
+        }else{
+            Node *minNode = FindMinimum(root->getRight());
+            root->setData(minNode->getData());
+            root->setRight(delteNode(root->getRight(),minNode->getData()));
+        }
+        
+        
+        
+    }
     
+    return root;
     
 }
 int main(){
@@ -112,6 +151,13 @@ int main(){
     InsertInBST(root,80);
     // InOrderTraversal(root);
     // PreOrderTraversal(root);
-    PostOrderTraversal(root);
+    // PostOrderTraversal(root);
+
+    root = delteNode(root, 70);
+
+    InOrderTraversal(root);
+    cout<<endl;
+
+
     cout<<endl;
 }
