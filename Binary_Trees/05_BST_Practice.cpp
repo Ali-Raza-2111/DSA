@@ -134,8 +134,6 @@ Node *delteNode(Node*root,int key){
             root->setRight(delteNode(root->getRight(),minNode->getData()));
         }
         
-        
-        
     }
     
     return root;
