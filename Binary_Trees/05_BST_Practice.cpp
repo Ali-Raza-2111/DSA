@@ -100,6 +100,9 @@ Node *FindMinimum(Node *root){
     return FindMinimum(root->getLeft());
 }
 
+
+
+
 Node *delteNode(Node*root,int key){
     if (root == NULL)
     {
@@ -147,9 +150,6 @@ int main(){
     InsertInBST(root,40);
     InsertInBST(root,60);
     InsertInBST(root,80);
-    // InOrderTraversal(root);
-    // PreOrderTraversal(root);
-    // PostOrderTraversal(root);
 
     root = delteNode(root, 70);
 
