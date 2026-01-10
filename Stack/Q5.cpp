@@ -55,6 +55,9 @@ bool isMatchingPair(char open, char close) {
             (open == '[' && close == ']'));
 }
 
+
+
+
 bool areSymbolsBalanced(const string& expr) {
     Stack s;
 
