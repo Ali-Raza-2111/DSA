@@ -56,8 +56,6 @@ bool isMatchingPair(char open, char close) {
 }
 
 
-
-
 bool areSymbolsBalanced(const string& expr) {
     Stack s;
 
