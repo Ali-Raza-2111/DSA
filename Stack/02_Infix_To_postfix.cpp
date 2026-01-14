@@ -4,9 +4,6 @@ using namespace std;
 
 const int STACKSIZE = 100; 
 
-
-
-
 class Stack {
 private:
     char stackArray[STACKSIZE];
