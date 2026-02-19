@@ -11,6 +11,8 @@ class Node{
         this->next = NULL;
     }
 };
+
+
 int main() {
     Node *Node1 = new Node(10);
     cout<<Node1->data<<" "<<Node1->next<<endl;
